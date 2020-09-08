@@ -53,3 +53,8 @@ real {integer}("."{integer})?{exponent}?
 "exit" return EXIT;
 "Exit" return EXIT;
 "EXIT" return EXIT;
+
+"PRINT:" return PRINT;
+"print:" return PRINT;
+"Print:" return PRINT;
+

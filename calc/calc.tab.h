@@ -59,11 +59,12 @@ extern int yydebug;
     CIRCLE = 265,
     HELP = 266,
     EXIT = 267,
-    LEFT = 268,
-    RIGHT = 269,
-    END = 270,
-    NEG = 271,
-    PRIMES = 272
+    PRINT = 268,
+    LEFT = 269,
+    RIGHT = 270,
+    END = 271,
+    NEG = 272,
+    PRIMES = 273
   };
 #endif
 

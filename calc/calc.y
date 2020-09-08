@@ -9,7 +9,7 @@ extern int yylex (void);
 %}
 
 %token NUMBER
-%token PLUS MINUS TIMES DIVIDE POWER TRIANGLE CIRCLE HELP EXIT
+%token PLUS MINUS TIMES DIVIDE POWER TRIANGLE CIRCLE HELP EXIT PRINT
 %token LEFT RIGHT
 %token END
 
@@ -28,6 +28,7 @@ Input: Input Line {printf(">>> ");};
 Line: END
 Line: Expression END { printf("Result: %f\n", $1); }
 
+Expression: PRINT { printf("%c\n", $1);}
 Expression: EXIT { printf("Até mais!\n"); exit(0);}
 Expression: HELP { printf(
 "Comandos:\nMAIS, mais, +: soma;\nMENOS, menos, -: subtração;\nVEZES, vezes, *: multiplicação;\nDIVIDIDO, dividido, /:divisão;\nPOTENCIA, potencia, ^: potencia;\nA: calcula a hiptenusa dado dois lados de um triangulo retangulo;\nO: calcula a circunferencia de um circulo dado o raio;\n#: calcula os divisores primos de um numero;\n");}
@@ -95,4 +96,3 @@ int main() {
         fprintf(stderr, "%d error found.\n",ret);
     }
 }
-
