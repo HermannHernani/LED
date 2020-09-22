@@ -1,11 +1,15 @@
 %{
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#define YYSTYPE double
-int yyerror (char const *s);
-extern int yylex (void);
+	#include "symtab.c"
+    #include <math.h>
+    #include <stdio.h>
+    #include <string.h>
+    #include <stdlib.h>
+    #define YYSTYPE double
+	extern FILE *yyin;
+	extern FILE *yyout;
+	extern int lineno;
+    int yyerror (char const *s);
+    extern int yylex (void);
 %}
 
 %token NUMBER
@@ -26,7 +30,7 @@ Input: /* empty */{printf(">>> ");};
 Input: Input Line {printf(">>> ");};
 
 Line: END
-Line: Expression END { printf("Result: %f\n", $1); }
+Line: Expression END {printf("\n");}
 
 Expression: PRINT { printf("%c\n", $1);}
 Expression: EXIT { printf("Até mais!\n"); exit(0);}
@@ -91,8 +95,20 @@ int yyerror(char const *s) {
 
 int main() {
     printf("Bem vindo ao terminal da Calculadora Monstra™ (v0.1)\nEsta Calculadora foi desenvolvida pelos alunos da Materia de Linguagens Especificas e de Dominio\ndo curso de Sistemas de Informação - UEA/EST\nSobre a mentoria do Professor Doutor Jucimar da Silva Jr.\nDigite 'Help' para ver os comandos\nDigite 'Exit' para sair\n");
-    int ret = yyparse();
-    if (ret){
-        fprintf(stderr, "%d error found.\n",ret);
-    }
+    
+	// initialize symbol table
+	init_hash_table();
+ 
+	// parsing
+	int flag;
+	yyin = fopen(argv[1], "r");
+	flag = yyparse();
+	fclose(yyin);
+ 
+	// symbol table dump
+	yyout = fopen("symtab_dump.out", "w");
+	symtab_dump(yyout);
+	fclose(yyout);	
+ 
+	return flag;
 }

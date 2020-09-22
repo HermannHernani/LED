@@ -1,18 +1,30 @@
 %{
-#define YYSTYPE double
-#include "calc.tab.h"
+    #define YYSTYPE double
+    #include "calc.tab.h"
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+	#include "symtab.h"
 %}
 
+alpha [a-zA-Z]
 white [ \t]+
 digit [0-9]
+alnum {alpha}|{digit}
 integer {digit}+
 exponent [eE][+-]?{integer}
 real {integer}("."{integer})?{exponent}?
-
+ID  {alpha}+{alnum}*
+STRING		\"{print}*\"
 %%
 
 {white} { }
 {real} { yylval=atof(yytext); return NUMBER; }
+
+"int" return INT;
+"INT" return INT;
+
+"=" return ATTRIB
 
 "MAIS" return PLUS;
 "mais" return PLUS;
@@ -42,9 +54,7 @@ real {integer}("."{integer})?{exponent}?
 
 "(" return LEFT;
 ")" return RIGHT;
-";\n" return END;
 ";" return END;
-"\n" return END;
 
 "help" return HELP;
 "Help" return HELP;
@@ -58,3 +68,11 @@ real {integer}("."{integer})?{exponent}?
 "print:" return PRINT;
 "Print:" return PRINT;
 
+ 
+{ID} 			{
+					// insert identifier into symbol table
+					insert(yytext, strlen(yytext), UNDEF, lineno);
+					return ID;
+				}
+ 
+"\n"			{ lineno += 1; }
