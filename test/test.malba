@@ -1,0 +1,15 @@
+int prog()                  //prog=marcação de identificação do nosso programa    "void é vazio ou triamos um arg = argumento/parametro
+{                          //abertura do que estará dentro do programa
+
+   int l = 11;   // l define o valor do comprimento
+   int w = 5;     // w define o valor da largura
+   int h = 6;     // h define o valor da altura
+   int v;
+   v = l * w * h; // v define o resultado do cálculo do volume
+
+   print: "LxWxH:",l,"x",w,"x",h  //print=imprime o que foi solicitado até encontrar o \n ao final da linha  ,
+                                  //tudo que não possuir a msm tipagem ou representar algo diferente , é separado por virgulas(",") .
+                                  //O que estiver dentre aspas é uma string, fora isso considerasse uma váriavel que possui valor dentro da função.
+
+   print: "Volume:", v            // receive = recebe um valor q será armazenado na variável informada
+}                                 //fechamento do que está dentro do programa
