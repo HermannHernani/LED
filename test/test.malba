@@ -7,7 +7,8 @@ int prog()                  //prog=marcação de identificação do nosso progra
    int v;
    v = l * w * h; // v define o resultado do cálculo do volume
 
-   print: "LxWxH:",l,"x",w,"x",h  //print=imprime o que foi solicitado até encontrar o \n ao final da linha  ,
+   print: 
+      "LxWxH:",l,"x",w,"x",h  //print=imprime o que foi solicitado até encontrar o \n ao final da linha  ,
                                   //tudo que não possuir a msm tipagem ou representar algo diferente , é separado por virgulas(",") .
                                   //O que estiver dentre aspas é uma string, fora isso considerasse uma váriavel que possui valor dentro da função.
 

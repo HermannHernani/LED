@@ -84,7 +84,7 @@ statement:
 	CONTINUE SEMI | BREAK SEMI | function_call SEMI | ID INCR SEMI | INCR ID SEMI | print
 ;
 
-print : PRINT STRING { printf("print %c\n", $2); };
+print: PRINT STRING { printf("print %c\n", $2); };
 
 if_statement:
 	IF LPAREN expression RPAREN tail else_if optional_else |

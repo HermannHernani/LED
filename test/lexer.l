@@ -37,7 +37,7 @@ STRING    \"{print}*\"
 <ML_COMMENT>"*"			
 <ML_COMMENT>"\n"    { lineno += 1; }
 
-"print:"			  { return PRINT; }
+"print:"|"PRINT:"	  { return PRINT; }
 "char"|"CHAR"         { return CHAR; }
 "int"|"INT"           { return INT; }
 "float"|"FLOAT"       { return FLOAT; }
