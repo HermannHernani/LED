@@ -20,9 +20,9 @@
 }
 
 /* token definition */
-%token<int_val> CHAR INT FLOAT DOUBLE IF ELSE WHILE FOR CONTINUE BREAK VOID RETURN
-%token<int_val> ADDOP MULOP DIVOP INCR OROP ANDOP NOTOP EQUOP RELOP
-%token<int_val> LPAREN RPAREN LBRACK RBRACK LBRACE RBRACE SEMI DOT COMMA ASSIGN REFER PRINT
+%token<int_val> CHAR INT FLOAT VOID RETURN
+%token<int_val> ADDOP MULOP DIVOP
+%token<int_val> LPAREN RPAREN LBRACE RBRACE SEMI DOT COMMA ASSIGN PRINT
 %token <symtab_item>   ID
 %token <int_val>       ICONST
 %token <double_val>    FCONST
@@ -30,14 +30,10 @@
 %token <str_val>       STRING
 
 /* precedencies and associativities */
-%left LPAREN RPAREN LBRACK RBRACK
-%right NOTOP INCR REFER
+%left LPAREN RPAREN
+%right INCR
 %left MULOP DIVOP
 %left ADDOP
-%left RELOP
-%left EQUOP
-%left OROP
-%left ANDOP
 %right ASSIGN
 %left COMMA PRINT
 
@@ -55,66 +51,31 @@ declarations: declarations declaration | declaration;
 
 declaration: type names SEMI ;
 
-type: INT | CHAR | FLOAT | DOUBLE | VOID ;
+type: INT | CHAR | FLOAT | VOID ;
 
 names: names COMMA variable | names COMMA init | variable | init ;
 
-variable: ID |
-    pointer ID |
-    ID array
+variable: ID 
 ;
 
-pointer: pointer MULOP | MULOP ;
-
-array: array LBRACK expression RBRACK | LBRACK expression RBRACK ;
-
-init: var_init | array_init ;
+init: var_init  ;
 
 var_init : ID ASSIGN constant
-
-array_init: ID array ASSIGN LBRACE values RBRACE ;
 
 values: values COMMA constant | constant ;
 
 /* statements */
 statements: statements statement | statement ;
 
-statement:
-	if_statement | for_statement | while_statement | assigment SEMI |
-	CONTINUE SEMI | BREAK SEMI | function_call SEMI | ID INCR SEMI | INCR ID SEMI | print
+statement: assigment SEMI | function_call SEMI | print
 ;
 
-print : PRINT STRING { printf("print %c\n", $2); };
-
-if_statement:
-	IF LPAREN expression RPAREN tail else_if optional_else |
-	IF LPAREN expression RPAREN tail optional_else
-;
-
-else_if: 
-	else_if ELSE IF LPAREN expression RPAREN tail |
-	ELSE IF LPAREN expression RPAREN tail
-;
-
-optional_else: ELSE tail | /* empty */ ;
-
-for_statement: FOR LPAREN assigment SEMI expression SEMI expression RPAREN tail ;
-
-while_statement: WHILE LPAREN expression RPAREN tail ;
-
-tail: LBRACE statements RBRACE ;
+print : PRINT STRING { printf("Print %s\n", $1); };
 
 expression:
     expression ADDOP expression |
     expression MULOP expression |
     expression DIVOP expression |
-    ID INCR |
-    INCR ID |
-    expression OROP expression |
-    expression ANDOP expression |
-    NOTOP expression |
-    expression EQUOP expression |
-    expression RELOP expression |
     LPAREN expression RPAREN |
     var_ref |
     sign constant |
@@ -127,7 +88,7 @@ constant: ICONST | FCONST | CCONST ;
 
 assigment: var_ref ASSIGN expression ;
 
-var_ref  : variable | REFER variable ; 
+var_ref  : variable ; 
 
 function_call: ID LPAREN call_params RPAREN;
 
@@ -144,7 +105,7 @@ function: function_head function_tail ;
 		
 function_head: return_type ID LPAREN parameters_optional RPAREN ;
 
-return_type: type | type pointer ;
+return_type: type ;
 
 parameters_optional: parameters | /* empty */ ;
 

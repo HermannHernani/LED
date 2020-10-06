@@ -41,13 +41,6 @@ STRING    \"{print}*\"
 "char"|"CHAR"         { return CHAR; }
 "int"|"INT"           { return INT; }
 "float"|"FLOAT"       { return FLOAT; }
-"double"|"DOUBLE"     { return DOUBLE; }
-"if"|"IF"             { return IF; }
-"else"|"ELSE"         { return ELSE; }
-"while"|"WHILE"       { return WHILE; }
-"for"|"FOR"           { return FOR; }
-"continue"|"CONTINUE" { return CONTINUE; }
-"break"|"BREAK"       { return BREAK; }
 "void"|"VOID"         { return VOID; }
 "return"|"RETURN"     { return RETURN; }
 
@@ -55,25 +48,16 @@ STRING    \"{print}*\"
 "+"|"-"             { return ADDOP; }
 "*"                 { return MULOP; }
 "/"                 { return DIVOP; }
-"++"|"--"           { return INCR; }
-"||"                { return OROP; }
-"&&"                { return ANDOP; }
-"!"                 { return NOTOP; }
-"=="|"!="           { return EQUOP; }
-">"|"<"|">="|"<="   { return RELOP; }
 
 
 "("       { return LPAREN; }
 ")"       { return RPAREN; }
-"]"       { return RBRACK; }
-"["       { return LBRACK; }
 "{"       { return LBRACE; }
 "}"       { return RBRACE; }
 ";"       { return SEMI; }
 "."       { return DOT; }
 ","       { return COMMA; }
 "="       { return ASSIGN; }
-"&"       { return REFER; }
 
 
 {ID}    {

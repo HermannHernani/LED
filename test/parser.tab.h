@@ -52,41 +52,26 @@ extern int yydebug;
     CHAR = 258,
     INT = 259,
     FLOAT = 260,
-    DOUBLE = 261,
-    IF = 262,
-    ELSE = 263,
-    WHILE = 264,
-    FOR = 265,
-    CONTINUE = 266,
-    BREAK = 267,
-    VOID = 268,
-    RETURN = 269,
-    ADDOP = 270,
-    MULOP = 271,
-    DIVOP = 272,
-    INCR = 273,
-    OROP = 274,
-    ANDOP = 275,
-    NOTOP = 276,
-    EQUOP = 277,
-    RELOP = 278,
-    LPAREN = 279,
-    RPAREN = 280,
-    LBRACK = 281,
-    RBRACK = 282,
-    LBRACE = 283,
-    RBRACE = 284,
-    SEMI = 285,
-    DOT = 286,
-    COMMA = 287,
-    ASSIGN = 288,
-    REFER = 289,
-    PRINT = 290,
-    ID = 291,
-    ICONST = 292,
-    FCONST = 293,
-    CCONST = 294,
-    STRING = 295
+    VOID = 261,
+    RETURN = 262,
+    ADDOP = 263,
+    MULOP = 264,
+    DIVOP = 265,
+    LPAREN = 266,
+    RPAREN = 267,
+    LBRACE = 268,
+    RBRACE = 269,
+    SEMI = 270,
+    DOT = 271,
+    COMMA = 272,
+    ASSIGN = 273,
+    PRINT = 274,
+    ID = 275,
+    ICONST = 276,
+    FCONST = 277,
+    CCONST = 278,
+    STRING = 279,
+    INCR = 280
   };
 #endif
 
@@ -102,7 +87,7 @@ union YYSTYPE
 	char* str_val;
 	list_t* symtab_item;
 
-#line 106 "parser.tab.h"
+#line 91 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
