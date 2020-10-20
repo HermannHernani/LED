@@ -11,5 +11,6 @@ int prog()                  //prog=marcação de identificação do nosso progra
                                   //tudo que não possuir a msm tipagem ou representar algo diferente , é separado por virgulas(",") .
                                   //O que estiver dentre aspas é uma string, fora isso considerasse uma váriavel que possui valor dentro da função.
 
-   print: "Volume:", v            // receive = recebe um valor q será armazenado na variável informada
+   print: "Volume:";
+   print: v;    // receive = recebe um valor q será armazenado na variável informada
 }                                 //fechamento do que está dentro do programa

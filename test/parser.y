@@ -22,12 +22,13 @@
 /* token definition */
 %token<int_val> CHAR INT FLOAT VOID RETURN
 %token<int_val> ADDOP MULOP DIVOP
-%token<int_val> LPAREN RPAREN LBRACE RBRACE SEMI DOT COMMA ASSIGN PRINT
+%token<int_val> LPAREN RPAREN LBRACE RBRACE SEMI DOT COMMA ASSIGN
 %token <symtab_item>   ID
 %token <int_val>       ICONST
 %token <double_val>    FCONST
 %token <char_val>      CCONST
 %token <str_val>       STRING
+%token PRINT
 
 /* precedencies and associativities */
 %left LPAREN RPAREN
@@ -70,7 +71,9 @@ statements: statements statement | statement ;
 statement: assigment SEMI | function_call SEMI | print
 ;
 
-print : PRINT STRING { printf("Print %s\n", $1); };
+/* Expressao de print, modificar aqui */
+
+expression: print: {printf("%c");} 
 
 expression:
     expression ADDOP expression |
@@ -80,6 +83,7 @@ expression:
     var_ref |
     sign constant |
     function_call
+	print:
 ;
 
 sign: ADDOP | /* empty */ ; 
