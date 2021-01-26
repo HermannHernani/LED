@@ -1,0 +1,68 @@
+/* 	
+	Hermann Hernani
+  Matheus Palheta
+  Wilbert Marins
+*/
+
+//1) Hello World
+
+prog(void)                  //prog=marcação de identificação do nosso programa    "void é vazio ou teriamos um arg = argumento/parametro
+{                           //abertura do que estará dentro do programa
+	print: "Hello World!")  //print=imprime o que foi solicitado até encontra o \n ao final da linha
+}                           //fechamento do que está dentro do programa
+
+
+// 2) Volume
+
+prog(void)                  //prog=marcação de identificação do nosso programa    "void é vazio ou triamos um arg = argumento/parametro
+ {                          //abertura do que estará dentro do programa
+
+   int l = 11    // l define o valor do comprimento
+   int w = 5     // w define o valor da largura
+   int h = 6     // h define o valor da altura
+   int v = l*w*h // v define o resultado do cálculo do volume
+
+   print: "LxWxH:",l,"x",w,"x",h  //print=imprime o que foi solicitado até encontrar o \n ao final da linha  ,
+                                  //tudo que não possuir a msm tipagem ou representar algo diferente , é separado por virgulas(",") .
+                                  //O que estiver dentre aspas é uma string, fora isso considerasse uma váriavel que possui valor dentro da função.
+
+   print: "Volume:", v            // receive = recebe um valor q será armazenado na variável informada
+}                                 //fechamento do que está dentro do programa
+
+//3) Multiplica
+
+func multiplica(int N1, int N2)      //func + " " + nome da função  (não podem ser utilizadas os operadores da linguagem *palavras reservadas* )
+                            // =marcação de identificação da nossa função   *obrigatoriamente sua escrita deve seguir a hierarquia de utilização
+{                           //abertura do que estará dentro da função
+	int resultado = N1 * N2    //
+	return:resultado       //retorna o valor do que foi solicitado 
+}                           //fechamento do que está dentro do programa
+
+
+prog(void)                  //prog=marcação de identificação do nosso programa
+{                           //abertura do que estará dentro do programa
+	print:"Digite o primeiro valor:"        //print=imprime o que foi solicitado até encontrar o \n ao final da linha
+	receive int V1:                             // receive = recebe um valor q será armazenado na variável informada
+	
+	print:"Digite o segundo valor:"         //print=imprime o que foi solicitado até encontrar o \n ao final da linha
+  	receive int V2:                             // receive = recebe um valor q será armazenado na variável informada
+  
+	int resultado = multiplica(V1,V2)           //variável recebe o retorno  da função a partir dos parametros passados
+	
+	print:"Resultado =", resultado          // receive = recebe um valor q será armazenado na variável informada
+}
+
+
+/* 	
+OPERADORES
+
+// - comentarios
+prog - main do prograama
+print: - imprime
+func - função
+return: - retorno de valores
+{,} - abertura e fechamento de sequência lógica
+
+int , string - tipagem da variável
+
+*/
